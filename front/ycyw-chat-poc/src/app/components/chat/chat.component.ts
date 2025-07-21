@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from '../../services/web-socket.service';
+import { ChatHistoryService } from '../../services/chat-history.service';
+import { Chat } from '../../models/chat.model';
 
 @Component({
   selector: 'app-chat',
@@ -9,26 +11,49 @@ import { WebSocketService } from '../../services/web-socket.service';
 })
 export class ChatComponent implements OnInit {
   message: string = '';
-  messages: any[] = [];
+  messages: Chat[] = [];
 
-  constructor(private webSocketService: WebSocketService) {}
+  constructor(
+    private webSocketService: WebSocketService,
+    private chatHistoryService: ChatHistoryService
+  ) {}
 
   ngOnInit(): void {
-    // TODO: requêter les messages précédents depuis le serveur lorsque la persistence sera implémentée
-    this.webSocketService.getMessage().subscribe((message: any) => {
-      this.messages.push(message);
-    });
-  }
+  // Charger l’historique
+  this.chatHistoryService.getChats().subscribe({
+    next: (chats: Chat[]) => {
+      this.messages = [...chats]; // Copie
+    },
+    error: (err) => {
+      console.error('Erreur lors de la récupération des chats:', err);
+    }
+  });
+
+  // Abonnement aux nouveaux messages via WebSocket
+  this.webSocketService.getMessage().subscribe({
+    next: (message: Chat) => {
+      // Ajouter à la fin sans écraser
+      this.messages = [...this.messages, message];
+    },
+    error: (err) => {
+      console.error('Erreur lors de la réception du message:', err);
+    }
+  });
+}
+
 
   sendMessage() {
-    if (this.message.trim()) {
-      const chatMessage = {
-        sender: 'User', // TODO: Remplacer par le vrai nom d'utilisateur lorsque les comptes seront implémentés
-        content: this.message,
-        timestamp: new Date().toLocaleTimeString()
-      };
-      this.webSocketService.sendMessage(chatMessage);
-      this.message = '';
-    }
+  if (this.message.trim()) {
+    const chatMessage: Chat = {
+      content: this.message,
+      authorId: 1, //TODO: remplacer par l'ID de l'utilisateur connecté une fois l'authentification implémentée
+      sentAt: new Date()
+    };
+
+    this.webSocketService.sendMessage(chatMessage);
+    this.message = '';
+
+    // Ne pas appeler saveChat ici si le backend l'enregistre déjà
   }
+}
 }

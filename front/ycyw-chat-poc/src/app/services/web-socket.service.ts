@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { Observable, Subject } from 'rxjs';
+import { Chat } from '../models/chat.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
   private stompClient: Client | undefined;
-  private messageSubject: Subject<any> = new Subject<any>();
+  private messageSubject: Subject<Chat> = new Subject<Chat>();
 
   constructor() {
     this.initializeWebSocketConnection();
@@ -36,11 +37,18 @@ export class WebSocketService {
     this.stompClient.activate();
   }
 
-  sendMessage(message: any) {
-    this.stompClient?.publish({ destination: '/app/chat.sendMessage', body: JSON.stringify(message) });
+  sendMessage(message: Chat) {
+    if (this.stompClient && this.stompClient.connected) {
+      this.stompClient.publish({
+        destination: '/app/chat.sendMessage',
+        body: JSON.stringify(message)
+      });
+    } else {
+      console.error('STOMP client is not connected.');
+    }
   }
 
-  getMessage(): Observable<any> {
+  getMessage(): Observable<Chat> {
     return this.messageSubject.asObservable();
   }
 }
