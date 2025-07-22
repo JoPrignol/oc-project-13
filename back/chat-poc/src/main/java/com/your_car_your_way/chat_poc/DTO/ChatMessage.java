@@ -1,16 +1,43 @@
 package com.your_car_your_way.chat_poc.DTO;
 
+import java.time.LocalDateTime;
+
 public class ChatMessage {
-    private String sender;
+    private Long id;
     private String content;
-    private String timestamp;
+    private Long authorId;
+    private LocalDateTime sentAt;
 
-    public String getSender() { return sender; }
-    public void setSender(String sender) { this.sender = sender; }
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getTimestamp() { return timestamp; }
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public LocalDateTime getSentAt() {
+        return sentAt;
+    }
+
+    public void setSentAt(LocalDateTime sentAt) {
+        this.sentAt = sentAt;
+    }
 }

@@ -46,7 +46,7 @@ export class ChatComponent implements OnInit {
   if (this.message.trim()) {
     const chatMessage: Chat = {
       content: this.message,
-      authorId: 1, //TODO: remplacer par l'ID de l'utilisateur connecté une fois l'authentification implémentée
+      authorId: 1, //TODO: remplacer par le nom de l'utilisateur connecté une fois l'authentification implémentée
       sentAt: new Date()
     };
 
