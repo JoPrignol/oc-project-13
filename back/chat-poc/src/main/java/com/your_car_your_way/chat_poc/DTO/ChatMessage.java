@@ -6,13 +6,12 @@ public class ChatMessage {
     private Long id;
     private String content;
     private Long authorId;
+    private String authorUsername;
     private LocalDateTime sentAt;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -20,7 +19,6 @@ public class ChatMessage {
     public String getContent() {
         return content;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
@@ -28,15 +26,20 @@ public class ChatMessage {
     public Long getAuthorId() {
         return authorId;
     }
-
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
+    }
+
+    public String getAuthorUsername() {
+        return authorUsername;
+    }
+    public void setAuthorUsername(String authorUsername) {
+        this.authorUsername = authorUsername;
     }
 
     public LocalDateTime getSentAt() {
         return sentAt;
     }
-
     public void setSentAt(LocalDateTime sentAt) {
         this.sentAt = sentAt;
     }

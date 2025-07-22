@@ -23,10 +23,12 @@ public class Chat {
     @Column(name = "author_id")
     private Long authorId;
 
+    @Column(name = "author_username")
+    private String authorUsername;
+
     @Column(name = "sent_at")
     private Timestamp sentAt;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -57,5 +59,13 @@ public class Chat {
 
     public void setSentAt(Timestamp sentAt) {
         this.sentAt = sentAt;
+    }
+
+    public String getAuthorUsername() {
+        return authorUsername;
+    }
+
+    public void setAuthorUsername(String authorUsername) {
+        this.authorUsername = authorUsername;
     }
 }
