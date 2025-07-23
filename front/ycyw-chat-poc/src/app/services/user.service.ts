@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:8080/api/user/me';
 
   getUsername(): Observable<string> {
-    return this.http.get<string>('/api/chat/me');
-  }
+      return this.http.get<string>(this.apiUrl, { withCredentials: true });
+    }
 }

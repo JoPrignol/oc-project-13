@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
 export class ChatComponent implements OnInit {
   message: string = '';
   messages: Chat[] = [];
-  username: string = '';
+  username: any = '';
 
   constructor(
     private webSocketService: WebSocketService,
@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit {
     this.userService.getUsername().subscribe({
       next: username => {
         this.username = username;
+        console.log('Username récupéré:', this.username);
       },
       error: err => {
         console.error('Impossible de récupérer le username', err);
