@@ -30,7 +30,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.userService.getUsername().subscribe({
       next: username => {
         this.username = username;
-        console.log('Username récupéré:', this.username);
       },
       error: err => {
         console.error('Impossible de récupérer le username', err);
@@ -42,7 +41,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
       next: (chats: Chat[]) => {
         this.messages = [...chats]; // Copie
         this.scrollToBottom();
-        console.log('Historique des chats chargé:', this.messages);
       },
       error: (err) => {
         console.error('Erreur lors de la récupération des chats:', err);

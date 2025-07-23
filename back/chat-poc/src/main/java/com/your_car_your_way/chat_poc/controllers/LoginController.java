@@ -55,9 +55,7 @@ public class LoginController {
 
   @GetMapping("/api/login")
   public ResponseEntity<?> checkLoginStatus(HttpServletRequest request) {
-      System.out.println("checkLoginStatus called");
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      System.out.println("Authentication: " + authentication);
       if (authentication != null && authentication.isAuthenticated()
           && !(authentication.getPrincipal() instanceof String)) {
           return ResponseEntity.ok().body(Map.of("status", "authenticated"));

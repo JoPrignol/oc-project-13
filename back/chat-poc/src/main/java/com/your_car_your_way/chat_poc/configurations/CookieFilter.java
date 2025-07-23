@@ -27,7 +27,6 @@ public class CookieFilter implements Filter {
             if (header.startsWith("JSESSIONID")) {
                 String updated = header + "; SameSite=Lax";
                 httpResponse.setHeader("Set-Cookie", updated);
-                System.out.println("Cookie modifié envoyé : " + updated);
             } else {
                 httpResponse.addHeader("Set-Cookie", header);
             }
