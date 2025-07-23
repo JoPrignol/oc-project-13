@@ -3,9 +3,8 @@
     <div *ngFor="let message of messages">
       <div class="mx-6 mb-1 pt-2 flex justify-between">
         <span class="text-xs font-italic text-gray-500">
-          <!-- {{ message.authorId }} -->
-            <!-- TODO: Ajouter le nom d'utilisateur -->
-            Username
+
+          {{ message.authorUsername }}
         </span>
         <span class="text-xs font-italic text-gray-500">
           {{ message.sentAt | date:'shortTime' }}

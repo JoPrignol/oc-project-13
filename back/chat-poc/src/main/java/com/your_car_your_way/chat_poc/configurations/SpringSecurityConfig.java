@@ -60,6 +60,7 @@ public class SpringSecurityConfig {
                       .requestMatchers("/ws/**").authenticated()
                       .requestMatchers("/api/**").authenticated()
                       .requestMatchers("/app/**").authenticated()
+                      .requestMatchers("/api/user/me").authenticated()
                       .anyRequest().permitAll()
               )
               .sessionManagement(session -> session
