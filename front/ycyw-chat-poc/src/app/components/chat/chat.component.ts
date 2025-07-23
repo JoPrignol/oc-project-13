@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebSocketService } from '../../services/web-socket.service';
 import { ChatHistoryService } from '../../services/chat-history.service';
 import { Chat } from '../../models/chat.model';
@@ -9,7 +9,8 @@ import { UserService } from '../../services/user.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
+  @ViewChild('messageContainer') private messageContainer!: ElementRef;
   message: string = '';
   messages: Chat[] = [];
   username: any = '';
@@ -19,6 +20,10 @@ export class ChatComponent implements OnInit {
     private chatHistoryService: ChatHistoryService,
     private userService: UserService
   ) {}
+
+  ngAfterViewInit(): void {
+    this.scrollToBottom();
+  }
 
   ngOnInit(): void {
     // Récupérer le username connecté
@@ -36,6 +41,7 @@ export class ChatComponent implements OnInit {
     this.chatHistoryService.getChats().subscribe({
       next: (chats: Chat[]) => {
         this.messages = [...chats]; // Copie
+        this.scrollToBottom();
         console.log('Historique des chats chargé:', this.messages);
       },
       error: (err) => {
@@ -48,6 +54,7 @@ export class ChatComponent implements OnInit {
       next: (message: Chat) => {
         // Ajouter à la fin sans écraser
         this.messages = [...this.messages, message];
+        this.scrollToBottom();
       },
       error: (err) => {
         console.error('Erreur lors de la réception du message:', err);
@@ -69,5 +76,16 @@ export class ChatComponent implements OnInit {
 
       // Ne pas appeler saveChat ici si le backend l'enregistre déjà
     }
+  }
+
+  private scrollToBottom(): void {
+    setTimeout(() => {
+      try {
+        this.messageContainer.nativeElement.scrollTop =
+          this.messageContainer.nativeElement.scrollHeight;
+      } catch (err) {
+        console.error('Erreur scroll:', err);
+      }
+    }, 0);
   }
 }
