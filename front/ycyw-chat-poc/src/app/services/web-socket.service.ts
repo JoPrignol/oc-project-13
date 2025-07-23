@@ -18,9 +18,13 @@ export class WebSocketService {
   initializeWebSocketConnection() {
     const serverUrl = 'http://localhost:8080/ws';
     const ws = new SockJS(serverUrl);
+
     this.stompClient = new Client({
       webSocketFactory: () => ws,
       reconnectDelay: 5000,
+      connectHeaders: {
+        'Cookie': document.cookie
+      },
       onConnect: () => {
         this.stompClient?.subscribe('/support/chat', (message) => {
           if (message.body) {

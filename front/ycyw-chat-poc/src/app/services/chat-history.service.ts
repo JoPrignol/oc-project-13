@@ -12,7 +12,7 @@ export class ChatHistoryService {
   constructor(private http: HttpClient) { }
 
   getChats(): Observable<Chat[]> {
-    return this.http.get<Chat[]>(this.apiUrl);
+    return this.http.get<Chat[]>(this.apiUrl, { withCredentials: true });
   }
 
   saveChat(chat: Chat): Observable<Chat> {
