@@ -12,6 +12,11 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
 
+
+// Ce filtre intercepte les réponses HTTP afin de modifier les en-têtes "Set-Cookie".
+// Le but est d'ajouter l'attribut SameSite=Lax aux cookies JSESSIONID
+// pour éviter les problèmes de cross-site.
+
 @Component
 public class CookieFilter implements Filter {
     @Override
@@ -22,12 +27,10 @@ public class CookieFilter implements Filter {
         CookieCaptureWrapper responseWrapper = new CookieCaptureWrapper(httpResponse);
         chain.doFilter(request, responseWrapper);
 
-        // Récupère les Set-Cookie et ajoute SameSite
         for (String header : responseWrapper.getHeaders("Set-Cookie")) {
             if (header.startsWith("JSESSIONID")) {
                 String updated = header + "; SameSite=Lax";
                 httpResponse.setHeader("Set-Cookie", updated);
-                System.out.println("Cookie modifié envoyé : " + updated);
             } else {
                 httpResponse.addHeader("Set-Cookie", header);
             }

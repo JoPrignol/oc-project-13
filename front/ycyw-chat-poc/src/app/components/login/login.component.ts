@@ -16,7 +16,6 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    console.log('login est appelée');
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
         this.router.navigate(['/chat']);

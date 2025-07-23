@@ -33,7 +33,6 @@ export class AuthService {
   }
 
   logout() {
-    // TODO: Appeler logout
     this.loggedIn.next(false);
   }
 
@@ -41,11 +40,3 @@ export class AuthService {
     return this.loggedIn.value;
   }
 }
-
-// login est appelée
-// login.component.ts:22 Login réussi
-// auth.guard.ts:12 AuthGuard check...
-// auth.guard.ts:19 AuthGuard refusé, redirection login
-
-// hypothèse : le ackend ne garde pas la session ou le cookie d’authentification actif entre
-// la requête POST /api/login et la requête GET /api/login que fait l’AuthGuard pour vérifier l’état connecté

@@ -13,6 +13,10 @@ import com.your_car_your_way.chat_poc.DTO.ChatMessage;
 import com.your_car_your_way.chat_poc.models.Chat;
 import com.your_car_your_way.chat_poc.repositories.ChatRepository;
 
+// Le contrôleur gère les messages de chat
+// Il reçoit les messages via WebSocket et les enregistre dans la base de données
+// Ensuite, il envoie le message enregistré à tous les clients connectés au canal de chat
+// Le point de terminaison pour envoyer des messages est "/app/chat.sendMessage"
 @Controller
 public class ChatController {
 
@@ -24,6 +28,9 @@ public class ChatController {
         this.messagingTemplate = messagingTemplate;
     }
 
+    // Cette méthode est appelée lorsqu'un message de chat est reçu
+    // Elle enregistre le message dans la base de données et le diffuse à tous les clients
+    // Le message est envoyé au canal "/support/chat"
     @MessageMapping("/chat.sendMessage")
     public void handleChatMessage(@Payload ChatMessage chatMessage, Principal principal) {
 
