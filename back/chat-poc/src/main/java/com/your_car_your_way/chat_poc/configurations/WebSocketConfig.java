@@ -10,6 +10,9 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    // On enregistre un point de terminaison WebSocket
+    // qui sera utilisé par les clients pour se connecter au serveur WebSocket.
+    // Le point de terminaison est "/ws" et il permet les connexions via SockJS.
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")

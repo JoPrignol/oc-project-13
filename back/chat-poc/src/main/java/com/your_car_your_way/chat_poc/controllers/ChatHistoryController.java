@@ -18,6 +18,8 @@ import com.your_car_your_way.chat_poc.DTO.ChatMessage;
 import com.your_car_your_way.chat_poc.models.Chat;
 import com.your_car_your_way.chat_poc.services.ChatService;
 
+// Ce contrôleur gère l'historique des chats
+// Il permet de récupérer tous les messages de chat et d'enregistrer de nouveaux messages en DB
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/chats")

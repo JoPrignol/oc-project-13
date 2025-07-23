@@ -10,6 +10,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, AfterViewInit {
+  // Référence à la div scrollable contenant les messages (utilisé pour le scroll automatique)
   @ViewChild('messageContainer') private messageContainer!: ElementRef;
   message: string = '';
   messages: Chat[] = [];
@@ -21,6 +22,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     private userService: UserService
   ) {}
 
+  // Après l'initialisation de la vue, on scroll vers le bas pour afficher les derniers messages
   ngAfterViewInit(): void {
     this.scrollToBottom();
   }
@@ -39,8 +41,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     // Charger l’historique
     this.chatHistoryService.getChats().subscribe({
       next: (chats: Chat[]) => {
-        this.messages = [...chats]; // Copie
-        this.scrollToBottom();
+        this.messages = [...chats]; // Copier les anciens messages dans le tableau
+        this.scrollToBottom(); // Scroll automatique au dernier message lors du chargement des messages de l'historique
       },
       error: (err) => {
         console.error('Erreur lors de la récupération des chats:', err);
@@ -52,7 +54,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       next: (message: Chat) => {
         // Ajouter à la fin sans écraser
         this.messages = [...this.messages, message];
-        this.scrollToBottom();
+        this.scrollToBottom(); // Scroll automatique vers le bas à chaque nouveau message
       },
       error: (err) => {
         console.error('Erreur lors de la réception du message:', err);
@@ -60,12 +62,12 @@ export class ChatComponent implements OnInit, AfterViewInit {
     });
   }
 
-
+  // Envoi d'un message au backend via websocket
   sendMessage() {
     if (this.message.trim()) {
       const chatMessage: Chat = {
         content: this.message,
-        authorId: 1,
+        authorId: 1, // ID en dur pour le POC
         sentAt: new Date()
       };
 
@@ -76,6 +78,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Fonction pour faire défiler la liste des messages vers le bas
   private scrollToBottom(): void {
     setTimeout(() => {
       try {
