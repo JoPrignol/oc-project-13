@@ -19,7 +19,6 @@ export class LoginComponent {
     console.log('login est appelée');
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
-        console.log('Login réussi');
         this.router.navigate(['/chat']);
       },
       error: () => {

@@ -9,14 +9,11 @@ export class AuthGuard implements CanActivate {
   constructor(private http: HttpClient, private router: Router) {}
 
   canActivate(): Observable<boolean> {
-    console.log('AuthGuard check...');
-    return this.http.get('/api/login', { withCredentials: true }).pipe(
+    return this.http.get('http://localhost:8080/api/login', { withCredentials: true }).pipe(
       map(() => {
-        console.log('AuthGuard autorisé');
         return true;
       }),
       catchError(() => {
-        console.log('AuthGuard refusé, redirection login');
         this.router.navigate(['/login']);
         return of(false);
       })

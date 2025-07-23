@@ -32,11 +32,11 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)  // on importe RouterModule avec routes
+    RouterModule.forRoot(routes)
   ],
   providers: [
     WebSocketService,
-    AuthGuard,  // on fournit l'AuthGuard
+    AuthGuard,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
   bootstrap: [AppComponent]
