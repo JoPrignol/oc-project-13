@@ -19,38 +19,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 @RestController
 public class LoginController {
 
-  // @GetMapping("api/login")
-  // public String getUser(){
-  //   return "user"; // This is a placeholder. In a real application, you would return the authenticated user's details.
-  // }
-
   @Autowired
     private AuthenticationManager authenticationManager;
-
-    // @PostMapping("/api/login")
-    // public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpServletRequest request) {
-    //     try {
-    //         String username = credentials.get("username");
-    //         String password = credentials.get("password");
-    //         Authentication auth = authenticationManager.authenticate(
-    //                 new UsernamePasswordAuthenticationToken(username, password)
-    //         );
-    //         SecurityContextHolder.getContext().setAuthentication(auth);
-    //         HttpSession session = request.getSession(true);
-    //         session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
-    //         // Log pour vérifier la création de la session
-    //         System.out.println("Session ID: " + session.getId());
-    //         return ResponseEntity.ok()
-    //                 .header("Set-Cookie", "JSESSIONID=" + session.getId() + "; Path=/; HttpOnly") // Assurez-vous que le cookie est envoyé
-    //                 .body(Map.of("message", "Connexion réussie", "username", username));
-    //     } catch (AuthenticationException e) {
-    //         return ResponseEntity.status(401).body(Map.of("error", "Identifiants invalides"));
-    //     }
-    // }
 
     @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpServletRequest request, HttpServletResponse response) {
@@ -68,8 +41,7 @@ public class LoginController {
             Cookie cookie = new Cookie("JSESSIONID", session.getId());
             cookie.setPath("/");
             cookie.setHttpOnly(true);
-            // cookie.setSecure(true); // Décommentez si vous utilisez HTTPS
-            cookie.setMaxAge(7 * 24 * 60 * 60); // Définissez une durée de vie pour le cookie (par exemple, 7 jours)
+            cookie.setMaxAge(7 * 24 * 60 * 60);
             response.addCookie(cookie);
 
             // Vérifiez les en-têtes de réponse
@@ -80,7 +52,6 @@ public class LoginController {
             return ResponseEntity.status(401).body(Map.of("error", "Identifiants invalides"));
         }
     }
-
 
   @GetMapping("/api/login")
   public ResponseEntity<?> checkLoginStatus(HttpServletRequest request) {

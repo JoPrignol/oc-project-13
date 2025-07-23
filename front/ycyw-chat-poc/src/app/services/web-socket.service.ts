@@ -37,7 +37,6 @@ export class WebSocketService {
         console.error('Additional details: ' + frame.body);
       }
     });
-
     this.stompClient.activate();
   }
 

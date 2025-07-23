@@ -74,7 +74,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       this.webSocketService.sendMessage(chatMessage);
       this.message = '';
 
-      // Ne pas appeler saveChat ici si le backend l'enregistre déjà
+      // Ne pas appeler saveChat ici car le backend l'enregistre déjà
     }
   }
 
