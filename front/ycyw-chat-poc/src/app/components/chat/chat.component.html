@@ -1,8 +1,8 @@
-<div class="flex flex-col items-center justify-center h-screen py-8 bg-slate-900">
+<div class="flex flex-col items-center justify-center h-screen py-8 bg-slate-900 repeat-bg">
   <div  #messageContainer class="h-full w-1/2 overflow-y-scroll hide-scrollbar">
     <div *ngFor="let message of messages">
       <div
-        class="mx-6 mb-1 pt-2 flex justify-between"
+        class="mx-[10px] mb-[6px] pt-2 flex justify-between"
         [ngClass]="message.authorUsername === username.username ? 'flex-row-reverse' : 'flex-row'"
       >
         <span class="text-xs font-italic text-gray-500">
