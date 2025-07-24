@@ -59,15 +59,15 @@ Le frontend communique avec le backend via WebSocket et REST.
 ### Connexion à l'application
 Il est possible de se connecter avec 2 utilisateurs différents :
 
-**Username :** user
-
-**Mot de passe :** password
+>**Username :** user
+>
+>**Mot de passe :** password
 
 ou
 
-**Username:** support
-
-**Mot de passe:** password
+>**Username:** support
+>
+>**Mot de passe:** password
 
 (D'autres utilisateurs peuvent être définis dans la config Spring Security.)
 
