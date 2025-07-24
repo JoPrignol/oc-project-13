@@ -1,4 +1,4 @@
-# 💬 Chat POC — Your Car Your Way
+# 💬 Chat POC — Your Car Your Way 💬
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-21-blue)](https://www.oracle.com/java/)
