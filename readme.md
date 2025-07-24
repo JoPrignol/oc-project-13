@@ -1,8 +1,8 @@
 # 💬 Chat POC — Your Car Your Way 💬
 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
+[![Spring Framework](https://img.shields.io/badge/Spring%20Framework-6.2.8-brightgreen?logo=spring)](https://spring.io/projects/spring-framework)
 [![Java](https://img.shields.io/badge/Java-21-blue)](https://www.oracle.com/java/)
-[![Angular](https://img.shields.io/badge/Angular-%5E17-red?logo=angular)](https://angular.io/)
+[![Angular](https://img.shields.io/badge/Angular-19.2.15-red?logo=angular)](https://angular.io/)
 [![H2 Database](https://img.shields.io/badge/Database-H2-lightgray?logo=databricks)](https://www.h2database.com/)
 [![WebSocket](https://img.shields.io/badge/Protocol-WebSocket-orange?logo=websocket)](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 [![HTTP](https://img.shields.io/badge/Protocol-HTTP-blue)](https://developer.mozilla.org/fr/docs/Web/HTTP)
@@ -98,3 +98,9 @@ ou
 - Pas de système de rôles et permissions
 
 - Un seul canal de discussion
+
+---
+
+### Documents
+
+Les documents relatif au projet complet sont disponibles dans le dossier '/documents'
