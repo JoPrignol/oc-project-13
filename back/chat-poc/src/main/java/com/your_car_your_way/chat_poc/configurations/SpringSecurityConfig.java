@@ -60,8 +60,7 @@ public class SpringSecurityConfig {
   @Bean
   public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
                                                     BCryptPasswordEncoder passwordEncoder) {
-      DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-      provider.setUserDetailsService(userDetailsService);
+      DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
       provider.setPasswordEncoder(passwordEncoder);
       return new ProviderManager(provider);
   }

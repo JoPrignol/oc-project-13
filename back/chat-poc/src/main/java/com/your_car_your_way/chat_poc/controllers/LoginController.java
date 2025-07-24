@@ -53,15 +53,14 @@ public class LoginController {
         }
     }
 
-  @GetMapping("/api/login")
-  public ResponseEntity<?> checkLoginStatus(HttpServletRequest request) {
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      if (authentication != null && authentication.isAuthenticated()
-          && !(authentication.getPrincipal() instanceof String)) {
-          return ResponseEntity.ok().body(Map.of("status", "authenticated"));
-      } else {
-          return ResponseEntity.status(401).body(Map.of("error", "Non authentifié"));
-      }
-  }
-
+    @GetMapping("/api/login")
+    public ResponseEntity<?> checkLoginStatus(HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()
+            && !(authentication.getPrincipal() instanceof String)) {
+            return ResponseEntity.ok().body(Map.of("status", "authenticated"));
+        } else {
+            return ResponseEntity.status(401).body(Map.of("error", "Non authentifié"));
+        }
+    }
 }

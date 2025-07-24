@@ -67,7 +67,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (this.message.trim()) {
       const chatMessage: Chat = {
         content: this.message,
-        authorId: 1, // ID en dur pour le POC
+        // authorId: 1, // ID en dur pour le POC
         sentAt: new Date()
       };
 
