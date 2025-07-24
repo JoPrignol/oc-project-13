@@ -19,9 +19,6 @@ public class Chat {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "author_id")
-    private Long authorId;
-
     @Column(name = "author_username")
     private String authorUsername;
 
@@ -42,14 +39,6 @@ public class Chat {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
     }
 
     public Timestamp getSentAt() {

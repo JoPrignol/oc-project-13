@@ -36,11 +36,8 @@ public class ChatController {
 
         String username = principal.getName();
 
-        Long authorId = 1L;
-
         Chat chat = new Chat();
         chat.setContent(chatMessage.getContent());
-        chat.setAuthorId(authorId);
         chat.setAuthorUsername(username);
         chat.setSentAt(Timestamp.valueOf(LocalDateTime.now()));
         Chat saved = chatRepository.save(chat);
@@ -48,8 +45,6 @@ public class ChatController {
         ChatMessage response = new ChatMessage();
         response.setId(saved.getId());
         response.setContent(saved.getContent());
-        response.setAuthorId(saved.getAuthorId());
-        response.setAuthorUsername(username);
         response.setAuthorUsername(saved.getAuthorUsername());
         response.setSentAt(saved.getSentAt().toLocalDateTime());
 
